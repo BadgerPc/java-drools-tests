@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="pl.speednet.drools" name="Drools Work Flow Example" tns:packageName="pl.speednet.drools" >
+
+    <!-- nodes -->
+    <businessRuleTask id="_jbpm-unique-6" name="ProcessMessage" g:ruleFlowGroup="ProcessMessage" >
+    </businessRuleTask>
+    <startEvent id="_7" name="Start" />
+    <endEvent id="_8" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_9" name="ProcessLastMessage" g:ruleFlowGroup="ProcessLastMessage" >
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_7-_jbpm-unique-6" sourceRef="_7" targetRef="_jbpm-unique-6" />
+    <sequenceFlow id="_9-_8" sourceRef="_9" targetRef="_8" />
+    <sequenceFlow id="_jbpm-unique-6-_9" sourceRef="_jbpm-unique-6" targetRef="_9" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pl.speednet.drools" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="34" y="96" width="109" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="64" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="64" y="256" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="16" y="176" width="145" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_7-_jbpm-unique-6" >
+        <di:waypoint x="88" y="40" />
+        <di:waypoint x="88" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_8" >
+        <di:waypoint x="88" y="200" />
+        <di:waypoint x="88" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_9" >
+        <di:waypoint x="88" y="120" />
+        <di:waypoint x="88" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

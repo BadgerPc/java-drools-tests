@@ -1,0 +1,38 @@
+package pl.speednet.drools
+
+global pl.speednet.drools.api.IDroolsLogger LOG;
+
+import pl.speednet.drools.dto.Messages; 
+import pl.speednet.drools.api.SimpleFact; 
+import pl.speednet.drools.dto.Messages;
+ 
+rule "Process first message" ruleflow-group "ProcessMessage"
+//lock-on-active
+    when 
+        m : Messages(status == Messages.UNDEFINED, myMessage : message)
+    then
+        m.setMessage("Hello");
+        m.setStatus(Messages.HELLO);
+        update(m);
+end
+
+rule "Process second message" ruleflow-group "ProcessMessage"
+    when
+        m : Messages(status == Messages.HELLO, myMessage : message)
+    then
+		LOG.log(myMessage);
+		
+		m.setMessage("Goodbye");
+        m.setStatus(Messages.GOODBYE);
+        update(m);
+end
+
+rule "Process third message" ruleflow-group "ProcessMessage" // "ProcessLastMessage"
+    when
+        m : Messages(status == Messages.GOODBYE, myMessage : message)
+    then
+		LOG.log(myMessage);
+		m.setMessage("");
+        m.setStatus(Messages.UNDEFINED);
+        update(m);
+end
